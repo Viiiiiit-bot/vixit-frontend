@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulate VIX Hike</title>
+    <link rel="stylesheet" href="../static/home/css/simulate-hike.css">
+</head>
+<body>
+    <h1>Simulate VIX Hike</h1>
+    <p>This tool lets you simulate a two-day VIX hike and view the probability of price reversion.</p>
+    <div>
+        <label for="start-price">Start price:</label>
+        <input type="range" id="start-price" min="10" max="50" value="20" oninput="updateStart()" />
+        <span id="start-value">20</span>
+    </div>
+    <div>
+        <label for="end-price">End price:</label>
+        <input type="range" id="end-price" min="20" max="100" value="40" oninput="updateEnd()" />
+        <span id="end-value">40</span>
+    </div>
+    <button onclick="simulate()">Calculate now</button>
+    <div id="results">
+        <p>Results will appear here.</p>
+    </div>
+    <script>
+        function updateStart(){
+            document.getElementById('start-value').textContent = document.getElementById('start-price').value;
+        }
+        function updateEnd(){
+            document.getElementById('end-value').textContent = document.getElementById('end-price').value;
+        }
+        function simulate(){
+            const s = parseFloat(document.getElementById('start-price').value);
+            const e = parseFloat(document.getElementById('end-price').value);
+            if(e <= s){
+                alert('End price must be greater than start price');
+                return;
+            }
+            const hike = ((e - s) / s * 100).toFixed(2);
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = '<h3>Hike percentage: ' + hike + '%</h3><p>Reversion probability and trading days will be shown here once connected to backend.</p>';
+        }
+    </script>
+</body>
+</html>
