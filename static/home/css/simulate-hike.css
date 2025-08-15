@@ -1,0 +1,324 @@
+/* step tooltip */
+#tooltip-helper-prev-sequence{
+    display: none !important;
+}
+.tooltip-helper-active-description{
+    height: 135px !important;
+    max-width: 400px !important;
+    background:rgb(13 18 22) !important;
+    padding: .5rem !important;
+    border: 1px solid;
+}
+.tooltip-helper-arrow-up{
+    border-bottom: 20px solid rgb(0 0 0) !important;
+}
+#tooltip-helper-end-sequence{
+    display: none;
+}
+/* end */
+
+.live-trade-container{
+    border:1.6px solid #2F3A46;
+    height: 100%;
+}
+
+.live-trade-container .left_section,
+.live-trade-container .right_section{
+    height: 100%;
+}
+.live-trade-container .left_section{
+    border-right: 1.6px solid #2F3A46;
+    padding: 0 !important;
+    height: 100%;
+    overflow-y: scroll;
+}
+.left_section__content{
+    height: 100%;
+}
+.trade_info_card{
+    /* border: 1px solid #2A5F55; */
+    height: max-content;
+    border-radius: 5px;
+    width: 24.5rem;
+}
+.trade_info_card .trade_card___top,
+.trade_info_card .trade_card___bottom{
+    padding: .7rem;
+}
+/* custom scrollbar for left section */
+.left_section::-webkit-scrollbar {
+    width: 1px;
+}
+
+.left_section::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.left_section::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+/* end */
+
+
+.left_section__title,
+.see-more-btn-container{
+    width: 24.5rem;
+}
+.trade_card___top .fa-caret-down{
+    font-size: 1.5rem;
+}
+.trade_card__bottom__left .fa-caret-down,
+.trade_card__bottom__left .fa-caret-up{
+    position: absolute;
+    left: -3px;
+}
+.trade_info_card.vix-drop{
+    background: linear-gradient(179.1deg, rgba(74, 30, 27, 0.71) -15.78%, rgba(20, 25, 31, 0) 99.23%);
+}
+.trade_info_card.vix-drop .trade_card___top .trade_card_title,
+.trade_info_card.vix-drop .trade_card___top .fa-caret-down{
+    color: #9E504B;
+}
+.trade_info_card.vix-drop .trade_card___bottom .fa-caret-down,
+.trade_info_card.vix-drop .trade_card___bottom .small_percentage_text{
+    color: var(--text-red);
+}
+
+.trade_card__bottom__left > *{
+    font-size: 14px !important;
+}
+
+.trade_info_card.vix-rise .trade_card_title,
+.trade_info_card.vix-rise .fa-caret-up,
+.trade_info_card.vix-rise .fa-caret-down{
+    color: #36A18E;
+}
+
+.trade_info_card.vix-rise{
+    background: linear-gradient(179.1deg, rgba(42, 95, 85, 0.71) -15.78%, rgba(20, 25, 31, 0) 99.23%);
+}
+.trade_info_card 
+.detected-trades span{
+    font-size: 0.93rem;
+}
+.trade_info_card small{
+    font-size: 0.77rem;
+}
+.trade_card___bottom{
+    background-color: #1B242D
+}
+.trade_card___bottom .trade-badge{
+    width: 120px;
+    background-color: #253242;
+    box-shadow: 5px 5px 10px rgba(20, 25, 31, 0.28);
+    border-radius: 3px;
+    padding: 3px 5px;
+    font-size: 15px;
+}
+
+/* result section */
+#result-container,
+#calculation-container{
+    animation: emerse 0.4s ease-in;
+}
+
+#calculation-result-content{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    animation: slideup 0.7s ease-in;
+}
+#gauge-chart{
+    width: 265px;
+    height:125px;
+}
+@keyframes emerse{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes slideup{
+    0%{
+        top: 100%;
+    }
+    100%{
+        /* opacity: 1; */
+        top: 0;
+    }
+}
+/* chart */
+#empty-chart{
+    /* flex: 1; */
+}
+
+@media (min-width: 1400px) and (max-width: 1635px){
+    .live-trade-container .left_section{
+        width: 37.333333% !important;
+    }
+    .live-trade-container .right_section{
+        width: 62.666667% !important;
+    }
+   
+}
+
+@media (max-width: 1450px) and (min-width: 1200px){
+    .trade_info_card{
+        height: 5.3rem;
+        width: 23rem;
+    }
+    .left_section__title,
+    .see-more-btn-container{
+        width: 23rem;
+    }
+    .trade_card_title{
+        width: 23rem;
+    }
+    .trade_info_card {
+        font-size: 0.8rem;
+    }
+ 
+    .trade_info_card small, .trade_card__bottom__left > *{
+        font-size: 0.75em;
+    }
+
+    .trade_card___top .trade_card_title{
+        font-size: 0.9rem;
+    }
+    .trade_card___top,
+    .trade_card___bottom{
+        height: 50%;
+        padding: 0 .5rem !important;
+    }
+    .trade_card___bottom .trade-badge{
+        width: 110px;
+        padding: 3px;
+    }
+}
+
+@media (min-width:1400px) and (min-height: 1000px) {
+    #gauge-chart{
+        width: 280px;
+        height: 190px;
+    }
+}
+
+@media(max-width: 1200px){
+    .live-trade-container{
+        border: none;
+        justify-content: flex-end;
+        flex-direction: column-reverse;
+        height: max-content;
+    }
+    .live-trade-container .left_section{
+        overflow: auto;
+    }
+    .live-trade-container .left_section, 
+    .live-trade-container .right_section{
+        border: none;
+        min-height: max-content
+    }
+    .live-trade-container .left_section .left_section__content{
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px){
+    .tooltip-helper-active-description{
+        width: 300px !important;
+        height: 170px !important;
+    }
+    /* #calculation-result-container{
+       display: block;
+    } */
+    #calculation-result-content{
+        animation: none;
+        /* animation: slideleft 0.7 ease-in !important;
+        animation-delay: .7s !important;  */
+           /* -webkit-animation: slideleft 3 ease-in !important;  */
+    }
+
+}
+/* 
+@keyframes slideleft{
+    0%{
+        left: 300px;
+    }
+    100%{
+        left: 0;
+    }
+} */
+@media (max-width: 600px){
+    /* detected trades */
+    .live-trade-container .left_section{
+        margin-top: 2rem !important;
+    }
+    .left_section__title{
+        margin-bottom: 1rem;
+    }
+}
+@media (max-width: 430px){
+    .trade_info_card,
+    .left_section__title,
+    .see-more-btn-container{
+        width: 300px;
+    }
+    .see-more-btn-container{
+        align-self: center !important;
+    }
+    .see-more-btn-container .see-more-btn{
+        width: 100% !important;
+        justify-content: center;
+    }
+    .see-more-btn-container .see-more-btn .fa-caret-right{
+        margin-left: 10px;
+    }
+   
+    .trade_card__bottom__right{
+        flex-direction: column !important;
+    }
+    .trade_card__bottom__left .fa-caret-down{
+        bottom: 6px;
+    }
+
+    /* chart */
+    .gauge-chart-container{
+        flex-direction: column;
+        justify-content: center !important;
+        position: relative;
+        top: -20px;
+    }
+    .chart-title{
+        text-align: center;
+    }
+    #gauge-chart {
+        width: 280px;
+        height: 201px;
+        margin: auto;
+    }
+    .chart-right{
+        display: flex;
+    }
+  
+}
+
+@media (max-width: 319px){
+    .trade_info_card,
+    .left_section__title,
+    .see-more-btn-container{
+        width: 250px;
+    }
+    #gauge-chart {
+        width: 280px;
+        height: 180px;
+    }
+}
+@media (max-width: 768px) and (max-height: 1000px){
+    #calculateBtn{
+        width: 10rem !important;
+    }
+}

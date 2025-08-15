@@ -1,0 +1,196 @@
+.past-trades-container{
+    border:1.6px solid #2F3A46;
+    height: 100%;
+    overflow-y: scroll;
+    flex-wrap: nowrap;
+}
+
+.past-trades-container{
+}
+/* custom scrollbar for left section */
+.past-trades-container::-webkit-scrollbar {
+    width: 2px;
+}
+
+.past-trades-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.past-trades-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+/* end */
+#back-link{
+    width: 9rem;
+    height: max-content;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+#back-link:hover{
+    color:#323c49;
+}
+
+#back_icon{
+    background-color: #253242;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0.8rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+  
+    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+#back-link:hover
+  #back_icon{
+  transform: scale(1.1);
+}
+
+/* past trade card */
+.small-text{
+    font-size: 0.6rem 
+}
+.past-trade-card{
+    background-color: #253242;
+    border-radius: 5px;
+    color:#8295AB
+}
+/* VIX Down */
+.past-trade-card.vix-down .card-right{
+    background: linear-gradient(179.1deg, rgba(74, 30, 27, 0.71) -15.78%, rgba(20, 25, 31, 0) 99.23%), #1B242D;
+}
+.past-trade-card.vix-down .card-right .fa-caret-down{
+    display: inline-block !important;
+}
+.past-trade-card.vix-down .card-right .caret-container{
+    color: var(--text-red) !important;
+}
+.past-trade-card.vix-down .card-right .fa-caret-up{
+    display: none;
+}
+.past-trade-card.vix-down .card-right .arrow-right-container svg path{
+    fill: var(--text-red) !important;
+}
+/* end */
+
+.past-trade-card span{
+    font-weight: 0.9rem;
+}
+.card-right{
+    margin-left: .5rem;
+    background: linear-gradient(179.1deg, rgba(42, 95, 85, 0.71) -15.78%, rgba(20, 25, 31, 0) 99.23%), #1B242D;
+    border-radius: 0 5px 5px 0;
+}
+.trade-badge{
+    width: 115px;
+    background-color: #253242;
+    box-shadow: 5px 5px 10px rgba(20, 25, 31, 0.28);
+    border-radius: 3px;
+    padding: 0 3px;
+    margin-left: 5px;
+    padding: 2px 0;
+}
+.arrow-right-container{
+    background: #253242;
+    box-shadow: 5px 5px 10px rgba(60, 110, 151, 0.1);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1450px) {
+    .past-trade-card span{
+        font-size: 0.87rem;
+    }
+    .trade-badge{
+        width: 95px;
+        /* padding: 2px 3px; */
+    }
+}
+
+@media (min-width: 1400px){
+    .small-text{
+        font-size: 0.7rem !important 
+    }
+}
+
+@media (max-width: 1200px){
+    .past-trade-cards{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+     .past-trades-container{
+        border: none;
+     }
+} 
+
+@media (max-width:1165px){
+    .past-trade-cards{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start !important;
+    }
+    .past-trade-card{
+        width: 450px;
+        flex-direction: column !important;
+    }
+    .past-trade-card .trade-card-title{
+        padding-top: .5rem;
+    }
+    .card-middle{
+        padding: .5rem 0;
+    }
+    .past-trade-card .trade-card-title,
+        .past-trade-card .trade-card-body,
+        .card-middle,
+        .card-right{
+        width: 100% !important;
+    }
+    .past-trade-card .trade-card-body{
+        flex-direction: column;
+        padding: 0;
+    }
+    .card-right{
+        margin-left: 0;
+        border-radius: 0 0 5px 5px;
+    }
+    .arrow-right-container{
+        height: 2rem;
+        width: 2rem;
+    }
+}
+@media (max-width:600px) {
+    #back_icon{
+        padding: 0.7rem;
+        height: 2.1rem;
+        width: 2.1rem;
+    }
+}
+
+@media (max-width: 425px) {
+    /* .badge-container{
+        flex-direction: column;
+    }
+    .trade-badge{
+        margin-left: 0;
+        margin-top: 5px;
+    } */
+    .main-title{
+        font-size: 1rem;
+    }
+}
+@media (max-width: 320px) {
+    .badge-container{
+        flex-direction: column;
+    }
+    .trade-badge{
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
