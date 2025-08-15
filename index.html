@@ -1,338 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>VIXit - VIX Simulator & Live Trades</title>
-    <style>
-        /* Dark trader vibe */
-        body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0c1a30; /* dark blue background */
-            color: #e0e6f0; /* light text */
-        }
-        a {
-            color: #88c0ff;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #a3d1ff;
-        }
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 220px;
-            height: 100vh;
-            background-color: #162846; /* darker panel */
-            padding: 20px;
-            box-sizing: border-box;
-            border-right: 2px solid #1f355e;
-        }
-        .sidebar .logo {
-            font-size: 1.6rem;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: #56c0e0;
-        }
-        .nav-item {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            display: block;
-            padding: 8px 0;
-            color: #d6dcea;
-        }
-        .nav-item:hover {
-            color: #fff;
-        }
-        .content {
-            margin-left: 240px;
-            padding: 30px;
-        }
-        section {
-            margin-bottom: 60px;
-        }
-        section h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #56c0e0;
-        }
-        /* Main Page */
-        .chart-placeholder {
-            background-color: #112544;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            height: 260px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #7aa2d6;
-            margin-bottom: 20px;
-        }
-        .percent-change {
-            font-size: 3rem;
-            font-weight: bold;
-            letter-spacing: 0.05em;
-        }
-        .percent-change.positive { color: #4cd964; }
-        .percent-change.negative { color: #ff5c5c; }
-        .info-boxes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .info-box {
-            flex: 1;
-            min-width: 250px;
-            background-color: #142f57;
-            border-radius: 8px;
-            padding: 15px;
-            box-sizing: border-box;
-            color: #d0ddf5;
-        }
-        /* Live Trades */
-        .no-trades {
-            text-align: center;
-            margin: 40px 0;
-            color: #7aa2d6;
-        }
-        .trade-list {
-            background-color: #142f57;
-            border-radius: 8px;
-            padding: 20px;
-            overflow-x: auto;
-        }
-        .trade-header, .trade-row {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-            padding: 8px 0;
-        }
-        .trade-header {
-            border-bottom: 2px solid #1f3e69;
-            font-weight: bold;
-            color: #88c0ff;
-        }
-        .trade-row:nth-child(even) {
-            background-color: #1a3561;
-        }
-        .profit-positive {
-            color: #4cd964;
-        }
-        .profit-negative {
-            color: #ff5c5c;
-        }
-        /* Simulate hike */
-        .slider-container {
-            display: flex;
-            flex-direction: column;
-            max-width: 500px;
-            gap: 20px;
-        }
-        .result-box {
-            margin-top: 20px;
-            background-color: #142f57;
-            padding: 20px;
-            border-radius: 8px;
-            color: #d0ddf5;
-        }
-        /* History */
-        .history-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .history-table th, .history-table td {
-            padding: 10px;
-            text-align: left;
-        }
-        .history-table thead {
-            background-color: #1f3e69;
-            color: #88c0ff;
-        }
-        .history-table tbody tr:nth-child(even) {
-            background-color: #1a3561;
-        }
-        .gain {
-            color: #4cd964;
-        }
-        .loss {
-            color: #ff5c5c;
-        }
-        input[type=range] {
-            width: 100%;
-        }
-        button {
-            background-color: #56c0e0;
-            color: #0c1a30;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #68d5f4;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIXit - VIX Simulator & Live Trades</title>
+  <link rel="stylesheet" href="static/home/css/main.css">
+  <style>
+    body {font-family: 'Poppins', sans-serif; margin:0; padding:0; background:#051826; color:#cfd7e3;}
+    nav {position:fixed; left:0; top:0; height:100%; width:200px; background:#091c32; color:#fff; padding-top:20px;}
+    nav ul {list-style:none; padding:0; margin:0;}
+    nav li {margin:20px 0;}
+    nav a {color:#fff; text-decoration:none; padding:10px 20px; display:block;}
+    main {margin-left:220px; padding:20px; min-height:100vh;}
+    section {margin-bottom:40px;}
+    .card {background:#0f2a47; padding:20px; border-radius:8px; margin-bottom:20px;}
+    .card h2, .card h3 {color:#76b8fb; margin-top:0;}
+    table {width:100%; border-collapse:collapse;}
+    th, td {padding:8px; text-align:left; border-bottom:1px solid #324e70;}
+    th {color:#76b8fb;}
+  </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="logo">VIXit</div>
-        <a class="nav-item" href="#main">Main</a>
-        <a class="nav-item" href="#live-trades">Live Trades</a>
-        <a class="nav-item" href="#simulate-hike">Simulate Hike</a>
-        <a class="nav-item" href="#history">Trade History</a>
-    </div>
-    <div class="content">
-        <!-- Main Page -->
-        <section id="main">
-            <h1>Main Page</h1>
-            <div class="chart-placeholder">
-                <div>Live 2-day VIX Chart (Coming Soon)</div>
-                <div class="percent-change positive">+1.23%</div>
-            </div>
-            <div class="info-boxes">
-                <div class="info-box">
-                    <h3>What is VIXit?</h3>
-                    <p>VIXit scans volatility spikes and computes the statistical likelihood of reversion. Our models help you navigate the chaos of the VIX.</p>
-                </div>
-                <div class="info-box">
-                    <h3>Strategy</h3>
-                    <p>When volatility jumps beyond a threshold, we anticipate mean reversion within two weeks. We combine historical patterns with current market dynamics.</p>
-                </div>
-                <div class="info-box">
-                    <h3>Disclaimer</h3>
-                    <p>Trading involves risk. This tool is for informational purposes only and does not constitute financial advice.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Live Trades -->
-        <section id="live-trades">
-            <h1>Find Live Trades</h1>
-            <div class="no-trades" id="no-trades">
-                <h2>VIX is Chilling</h2>
-                <p>No high-probability trades detected. Check back later.</p>
-            </div>
-            <div class="trade-list" id="trade-list" style="display:none;">
-                <div class="trade-header">
-                    <div>Strike</div>
-                    <div>Type</div>
-                    <div>Expiry</div>
-                    <div>Premium</div>
-                    <div>Break-even</div>
-                    <div>Revert Prob.</div>
-                </div>
-                <!-- Example trade rows -->
-                <div class="trade-row">
-                    <div>20</div>
-                    <div>Put</div>
-                    <div>2025-09-01</div>
-                    <div>$1.10</div>
-                    <div>$18.90</div>
-                    <div class="profit-positive">67%</div>
-                </div>
-                <div class="trade-row">
-                    <div>22</div>
-                    <div>Put</div>
-                    <div>2025-09-01</div>
-                    <div>$0.85</div>
-                    <div>$21.15</div>
-                    <div class="profit-positive">55%</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Simulate Hike -->
-        <section id="simulate-hike">
-            <h1>Simulate Hike</h1>
-            <div class="slider-container">
-                <label for="start-price">Start Price: <span id="start-price-val">15</span></label>
-                <input type="range" id="start-price" min="10" max="30" value="15">
-                <label for="end-price">End Price: <span id="end-price-val">20</span></label>
-                <input type="range" id="end-price" min="10" max="40" value="20">
-                <button id="calculate-btn">Calculate</button>
-                <div class="result-box" id="result-box" style="display:none;">
-                    <div id="hike-percent">Hike: 0%</div>
-                    <div id="revert-prob">Revert probability: 0%</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- History -->
-        <section id="history">
-            <h1>Did You Miss Those Trades?</h1>
-            <table class="history-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Strike</th>
-                        <th>Type</th>
-                        <th>Entry</th>
-                        <th>Exit</th>
-                        <th>P/L</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025-06-10</td>
-                        <td>18</td>
-                        <td>Put</td>
-                        <td>$1.00</td>
-                        <td>$1.50</td>
-                        <td class="gain">+50%</td>
-                    </tr>
-                    <tr>
-                        <td>2025-05-25</td>
-                        <td>23</td>
-                        <td>Put</td>
-                        <td>$0.80</td>
-                        <td>$0.40</td>
-                        <td class="loss">-50%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
-    <script>
-        // Display example trades by default
-        document.getElementById('no-trades').style.display = 'none';
-        document.getElementById('trade-list').style.display = 'block';
-
-        const startSlider = document.getElementById('start-price');
-        const endSlider = document.getElementById('end-price');
-        const startValSpan = document.getElementById('start-price-val');
-        const endValSpan = document.getElementById('end-price-val');
-        const resultBox = document.getElementById('result-box');
-        const hikeSpan = document.getElementById('hike-percent');
-        const revertSpan = document.getElementById('revert-prob');
-
-        function updateValues() {
-            startValSpan.textContent = startSlider.value;
-            endValSpan.textContent = endSlider.value;
-        }
-        startSlider.addEventListener('input', updateValues);
-        endSlider.addEventListener('input', updateValues);
-
-        document.getElementById('calculate-btn').addEventListener('click', () => {
-            const start = parseFloat(startSlider.value);
-            const end = parseFloat(endSlider.value);
-            if (end <= start) {
-                alert('End price must be higher than start price.');
-                return;
-            }
-            const hikePct = ((end - start) / start * 100).toFixed(2);
-            const revertProb = Math.max(0, (1 - (end - start)/start) * 100).toFixed(2);
-            hikeSpan.textContent = 'Hike: ' + hikePct + '%';
-            revertSpan.textContent = 'Revert probability: ' + revertProb + '%';
-            resultBox.style.display = 'block';
-        });
-
-        updateValues();
-    </script>
+  <nav>
+    <h2 style="text-align:center; margin:0 0 20px 0;">VIXit</h2>
+    <ul>
+      <li><a href="#main">Main</a></li>
+      <li><a href="#live">Live Trades</a></li>
+      <li><a href="#simulate">Simulate Hike</a></li>
+      <li><a href="#history">Trade History</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="main">
+      <h1>Main Page</h1>
+      <div class="card">
+        <h2>Live 2‑day VIX Chart</h2>
+        <p><!-- placeholder: chart will be rendered here --></p>
+        <h2><!-- placeholder: percent change --></h2>
+      </div>
+      <div class="card">
+        <h3>What is VIXit?</h3>
+        <p><!-- placeholder: static description or call to API for about text --></p>
+      </div>
+      <div class="card">
+        <h3>Strategy</h3>
+        <p><!-- placeholder: strategy description --></p>
+      </div>
+      <div class="card">
+        <h3>Disclaimer</h3>
+        <p><!-- placeholder: disclaimer text --></p>
+      </div>
+    </section>
+    <section id="live">
+      <h2>Find Live Trades</h2>
+      <table>
+        <thead>
+          <tr><th>Strike</th><th>Type</th><th>Expiry</th><th>Premium</th><th>Break‑even</th><th>Revert Prob.</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><!-- placeholder: strike price --></td>
+            <td><!-- placeholder: option type --></td>
+            <td><!-- placeholder: expiry date --></td>
+            <td><!-- placeholder: price --></td>
+            <td><!-- placeholder: break even --></td>
+            <td><!-- placeholder: probability --></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="simulate">
+      <h2>Simulate Hike</h2>
+      <p><!-- placeholder: simulation UI & results will be rendered here --></p>
+    </section>
+    <section id="history">
+      <h2>Trade History</h2>
+      <table>
+        <thead>
+          <tr><th>Trade</th><th>Start Date</th><th>Sell Date</th><th>Days</th><th>Bought At</th><th>Sold At</th><th>Returns</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><!-- placeholder: name --></td>
+            <td><!-- placeholder: start date --></td>
+            <td><!-- placeholder: sell date --></td>
+            <td><!-- placeholder: days in trade --></td>
+            <td><!-- placeholder: bought at --></td>
+            <td><!-- placeholder: sold at --></td>
+            <td><!-- placeholder: returns --></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 </body>
 </html>
