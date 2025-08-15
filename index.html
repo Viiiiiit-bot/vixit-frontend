@@ -41,7 +41,14 @@
                 <div class="box">
                     <div class="box-body">
                         <!-- Placeholder for the stock chart -->
-                        <div id="vix-stock-chart" style="height:300px;">VIX chart goes here</div>
+                        <        <div class="vix-chart-container" style="margin-top: 20px;">
+            <div id="chart-buttons" class="mb-2">
+                <button onclick="updateChart('1d')" class="btn btn-sm button-dark m-1">1 Day</button>
+                <button onclick="updateChart('7d')" class="btn btn-sm button-dark m-1">7 Days</button>
+                <button onclick="updateChart('20d')" class="btn btn-sm button-dark m-1">20 Days</button>
+            </div>
+            <div id="vix-price-chart" style="height:350px;"></div>
+        </div>
                     </div>
                 </div>
             </div>
@@ -99,5 +106,40 @@
     <script src="static/home/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="static/home/js/main.js"></script>
     <!-- Additional scripts for charts and interactions can be added here -->
+
+<    <script src="static/home/assets/apexcharts-bundle/apexcharts.min.js"></script>
+    <script>
+    const chartOptions = {
+        chart: { type: 'line', height: 350, foreColor: '#fff', background: '#0d1216' },
+        series: [{ name: 'VIX', data: [] }],
+        xaxis: { categories: [] },
+    };
+    let chart;
+    function updateChart(range) {
+        let data, categories;
+        if (range === '1d') {
+            data = [20, 21, 23, 22, 24, 25, 23];
+            categories = ['09:30','10:30','11:30','12:30','13:30','14:30','15:30'];
+        } else if (range === '7d') {
+            data = [19,20,21,23,22,24,26];
+            categories = ['Mon','Tue','Wed','Thu','Fri','Mon','Tue'];
+        } else if (range === '20d') {
+            data = [18,19,18,19,20,22,21,23,22,24,23,22,23,24,25,24,23,24,23,22];
+            categories = Array.from({length: 20}, (_, i) => 'Day ' + (i+1));
+        }
+        if (chart) {
+            chart.updateSeries([{ data }]);
+            chart.updateOptions({ xaxis: { categories } });
+        } else {
+            chartOptions.series[0].data = data;
+            chartOptions.xaxis.categories = categories;
+            chart = new ApexCharts(document.querySelector('#vix-price-chart'), chartOptions);
+            chart.render();
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        updateChart('1d');
+    });
+    </script>
 </body>
-</html>
+/html>
