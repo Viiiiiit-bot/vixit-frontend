@@ -1,97 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIXit - VIX Simulator & Live Trades</title>
-  <link rel="stylesheet" href="static/home/css/main.css">
-  <style>
-    body {font-family: 'Poppins', sans-serif; margin:0; padding:0; background:#051826; color:#cfd7e3;}
-    nav {position:fixed; left:0; top:0; height:100%; width:200px; background:#091c32; color:#fff; padding-top:20px;}
-    nav ul {list-style:none; padding:0; margin:0;}
-    nav li {margin:20px 0;}
-    nav a {color:#fff; text-decoration:none; padding:10px 20px; display:block;}
-    main {margin-left:220px; padding:20px; min-height:100vh;}
-    section {margin-bottom:40px;}
-    .card {background:#0f2a47; padding:20px; border-radius:8px; margin-bottom:20px;}
-    .card h2, .card h3 {color:#76b8fb; margin-top:0;}
-    table {width:100%; border-collapse:collapse;}
-    th, td {padding:8px; text-align:left; border-bottom:1px solid #324e70;}
-    th {color:#76b8fb;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIXit</title>
+    <!-- Include CSS from the copied VIXit front‑end. These files live in the static/home folder of the repository. -->
+    <link rel="stylesheet" href="static/home/assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/home/assets/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="static/home/css/base.css" />
+    <link rel="stylesheet" href="static/home/css/main.css" />
 </head>
-<body>
-  <nav>
-    <h2 style="text-align:center; margin:0 0 20px 0;">VIXit</h2>
-    <ul>
-      <li><a href="#main">Main</a></li>
-      <li><a href="#live">Live Trades</a></li>
-      <li><a href="#simulate">Simulate Hike</a></li>
-      <li><a href="#history">Trade History</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section id="main">
-      <h1>Main Page</h1>
-      <div class="card">
-        <h2>Live 2‑day VIX Chart</h2>
-        <p><!-- placeholder: chart will be rendered here --></p>
-        <h2><!-- placeholder: percent change --></h2>
-      </div>
-      <div class="card">
-        <h3>What is VIXit?</h3>
-        <p><!-- placeholder: static description or call to API for about text --></p>
-      </div>
-      <div class="card">
-        <h3>Strategy</h3>
-        <p><!-- placeholder: strategy description --></p>
-      </div>
-      <div class="card">
-        <h3>Disclaimer</h3>
-        <p><!-- placeholder: disclaimer text --></p>
-      </div>
-    </section>
-    <section id="live">
-      <h2>Find Live Trades</h2>
-      <table>
-        <thead>
-          <tr><th>Strike</th><th>Type</th><th>Expiry</th><th>Premium</th><th>Break‑even</th><th>Revert Prob.</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><!-- placeholder: strike price --></td>
-            <td><!-- placeholder: option type --></td>
-            <td><!-- placeholder: expiry date --></td>
-            <td><!-- placeholder: price --></td>
-            <td><!-- placeholder: break even --></td>
-            <td><!-- placeholder: probability --></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    <section id="simulate">
-      <h2>Simulate Hike</h2>
-      <p><!-- placeholder: simulation UI & results will be rendered here --></p>
-    </section>
-    <section id="history">
-      <h2>Trade History</h2>
-      <table>
-        <thead>
-          <tr><th>Trade</th><th>Start Date</th><th>Sell Date</th><th>Days</th><th>Bought At</th><th>Sold At</th><th>Returns</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><!-- placeholder: name --></td>
-            <td><!-- placeholder: start date --></td>
-            <td><!-- placeholder: sell date --></td>
-            <td><!-- placeholder: days in trade --></td>
-            <td><!-- placeholder: bought at --></td>
-            <td><!-- placeholder: sold at --></td>
-            <td><!-- placeholder: returns --></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+<body class="bg-black">
+    <!-- Sidebar navigation (visible on large screens) -->
+    <aside class="d-none d-lg-flex align-items-start">
+        <div class="aside__content d-flex flex-column align-items-center p-3">
+            <div class="top-buttons d-flex flex-column w-100 align-items-center">
+                <!-- Link to the Find Live Trades page -->
+                <a href="find-live-trade.html" class="btn button-secondary mb-3" style="padding:28px">Find live trades</a>
+                <!-- Link to the Simulate Hike page -->
+                <a href="simulate-hike.html" class="btn button-dark mb-3">Simulate hike</a>
+                <!-- Link back to this main page -->
+                <a href="index.html" class="btn button-dark">Main page</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main content container -->
+    <div class="d-flex flex-column w-100" style="margin-left: 0;">
+        <!-- Title section -->
+        <div class="text-center p-3 pt-4 pb-md-3 pb-lg-0">
+            <h1 class="fw-600">VIX SHORT <span class="text-green">CALCULATOR</span></h1>
+            <!-- Placeholder for the current VIX price (to be filled dynamically) -->
+            <h5 class="text-light" id="current_vix_price">--current VIX price--</h5>
+        </div>
+
+        <!-- Chart and summary section -->
+        <div class="row justify-content-center position-relative m-0">
+            <!-- Chart card -->
+            <div class="col-12 col-xxl-11">
+                <div class="box">
+                    <div class="box-body">
+                        <!-- Placeholder for the stock chart -->
+                        <div id="vix-stock-chart" style="height:300px;">VIX chart goes here</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Summary container -->
+            <div class="row summary-container justify-content-center position-relative m-0">
+                <div class="col-12 col-md-6 mt-4 mb-3 d-flex justify-content-between align-items-end summary-div">
+                    <div>
+                        <!-- Placeholders for hike/drop indication -->
+                        <h3 class="text-green result-text" id="vix-hike-text">Hike</h3>
+                        <h3 class="text-red result-text d-none" id="vix-drop-text">Drop</h3>
+                        <h3 class="mt-2">last two days</h3>
+                        <a href="#read-more" class="btn button-green mt-2">READ MORE <i class="fa fa-caret-right"></i></a>
+                    </div>
+                    <div class="text-end">
+                        <!-- Placeholder for the two‑day percent change -->
+                        <div class="text-green large-percent-text mb-2">
+                            <h2 id="vix_price_placeholder">+X.XX%</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 d-flex justify-content-center">
+                    <!-- Bull/Bear images (display based on VIX movement) -->
+                    <img src="static/home/images/bull.png" alt="Bull" class="bull-image" id="bullImg" />
+                    <img src="static/home/images/bear.png" alt="Bear" class="bull-image d-none" id="bearImg" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Information cards (strategy, warning, how to trade) -->
+        <div class="container mt-5" id="read-more">
+            <div class="row justify-content-center g-3">
+                <div class="col-12 col-md-4 info-card p-3 shadow">
+                    <h5 class="text-center">Strategy</h5>
+                    <p class="text-lightgrey">
+                        VIXit identifies VIX after significant hikes with a quick and high probability for price reverts. Buy short‑term PUT options, sell positions, and capitalize on potential price drops.
+                    </p>
+                </div>
+                <div class="col-12 col-md-4 info-card p-3 shadow">
+                    <h5 class="text-center">Warning</h5>
+                    <p class="text-lightgrey">
+                        Options trading is high risk and can involve significant loss. Information provided is for educational purposes only.
+                    </p>
+                </div>
+                <div class="col-12 col-md-4 info-card p-3 shadow">
+                    <h5 class="text-center">How to trade</h5>
+                    <p class="text-lightgrey">
+                        Request options trading access through your broker. Use VIXit to check for high‑probability reversions and select trades that match your strategy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/home/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/home/js/main.js"></script>
+    <!-- Additional scripts for charts and interactions can be added here -->
 </body>
 </html>
