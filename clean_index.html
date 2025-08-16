@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VIX Short Calculator</title>
+    <link rel="stylesheet" href="static/home/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/home/assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="static/home/css/base.css">
+    <link rel="stylesheet" href="static/home/css/main.css">
+</head>
+<body class="bg-black">
+    <main class="d-flex align-items-start pt-2 pb-2">
+        <!-- Sidebar navigation -->
+        <aside class="d-none d-lg-flex align-items-start">
+            <div class="aside__content d-flex flex-column align-items-center">
+                <div class="top-buttons d-flex flex-column w-100 align-items-center">
+                    <a href="find-live-trade.html" class="btn button-secondary" style="padding:28px">Find live trades</a>
+                    <a href="simulate-hike.html" class="btn button-dark mt-3">Simulate hike</a>
+                    <a href="index.html" class="btn button-dark mt-3">Main page</a>
+                    <button class="btn button-dark mt-3">Read me</button>
+                </div>
+            </div>
+        </aside>
+        <!-- Main content area -->
+        <div class="flex-grow-1">
+            <!-- Top section with title and chart -->
+            <div class="main rounded mb-2" id="top-main">
+                <div class="text-center p-4 title-container">
+                    <h1 class="fw-600">VIX SHORT <span class="text-green">CALCULATOR</span></h1>
+                    <h5 class="text-light" id="current_vix_price">Current VIX price : 16.79</h5>
+                </div>
+                <div class="row justify-content-center position-relative">
+                    <div class="col-12 col-xxl-11">
+                        <div class="box">
+                            <div class="box-body position-relative">
+                                <!-- Chart and buttons -->
+                                <div class="d-flex">
+                                    <div id="chart-buttons" class="d-flex flex-column mr-3">
+                                        <button onclick="updateChart('1d')" class="btn btn-sm button-dark m-1">1 Day</button>
+                                        <button onclick="updateChart('7d')" class="btn btn-sm button-dark m-1">7 Days</button>
+                                        <button onclick="updateChart('20d')" class="btn btn-sm button-dark m-1">20 Days</button>
+                                    </div>
+                                    <div id="vix-price-chart" style="flex:1;height:350px;"></div>
+                                    <!-- Bear/Bull images -->
+                                    <img src="static/home/images/bear.png" id="bearImg" style="position:absolute; bottom:0; right:0; width:25%; opacity:0.8;" alt="bear image">
+                                    <img src="static/home/images/bull.png" id="bullImg" style="position:absolute; bottom:0; right:0; width:25%; opacity:0.8; display:none;" alt="bull image">
+                                </div>
+                                <!-- Trend summary -->
+                                <div class="d-flex justify-content-between align-items-end mt-3">
+                                    <div>
+                                        <h3 class="text-red">Drop</h3>
+                                        <p class="text-lightgrey">last two days</p>
+                                        <a href="#bottom-main" class="btn btn-sm button-red">READ MORE</a>
+                                    </div>
+                                    <h2 class="text-red m-0">-4.71%</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom section with info cards -->
+            <div class="main d-flex position-relative" id="bottom-main">
+                <div class="bottom-main-content rounded flex-column">
+                    <div class="row justify-content-around mt-5 mb-3">
+                        <!-- Strategy card -->
+                        <div class="col-10 col-sm-5 col-lg-4 shadow col-xl-3 info-card p-4">
+                            <div class="info-card__header text-center">
+                                <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M32.9082 0C31.6402 0 30.6122 1.02792 30.6122 2.29592V30.6122H2.29592C1.02792 30.6122 0 31.6402 0 32.9082V42.0918C0 43.3598 1.02792 44.3878 2.29592 44.3878H30.6122V72.7041C30.6122 73.9721 31.6402 75 32.9082 75H42.0918C43.3598 75 44.3878 73.9721 44.3878 72.7041V44.3878H72.7041C73.9721 44.3878 75 43.3598 75 42.0918V32.9082C75 31.6402 73.9721 30.6122 72.7041 30.6122H44.3878V2.29592C44.3878 1.02792 43.3598 0 42.0918 0H32.9082Z" fill="url(#paint0_linear)"/>
+                                </svg>
+                                <h5>Strategy</h5>
+                            </div>
+                            <div class="info-card__body text-lightgrey">
+                                <p>VIXit identifies VIX after significant hikes with a quick and high probability for price reverts</p>
+                                <ol style="font-size: 14px;">
+                                    <li>Buy short‑term, PUT option</li>
+                                    <li>Sell position</li>
+                                    <li>Capitalize on the price increase of short‑term PUT option trades...</li>
+                                </ol>
+                                <div><a href="#" onclick="event.preventDefault();">See more</a></div>
+                            </div>
+                        </div>
+                        <!-- Warning card -->
+                        <div class="col-10 col-sm-5 col-lg-4 shadow col-xl-3 info-card p-4">
+                            <div class="info-card__header text-center">
+                                <svg width="75" height="14" viewBox="0 0 75 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.29592 0H72.7041C73.9721 0 75 1.04467 75 2.33333V11.6667C75 12.9553 73.9721 14 72.7041 14H2.29592C1.02792 14 0 12.9553 0 11.6667V2.33333C0 1.04467 1.02792 0 2.29592 0Z" fill="url(#paint1_linear)"/>
+                                </svg>
+                                <h5>Warning</h5>
+                            </div>
+                            <div class="info-card__body">
+                                <p class="text-lightgrey">Options trading is a high-risk form of trading and can involve a significant risk of total investment loss.</p>
+                                <p class="text-lightgrey">Information provided on this site should only be used as educational information for traders with a strong understanding...</p>
+                                <div><a href="#" onclick="event.preventDefault();">See more</a></div>
+                            </div>
+                        </div>
+                        <!-- How to make the trade card -->
+                        <div class="col-10 col-sm-5 col-lg-4 shadow col-xl-3 info-card p-4">
+                            <div class="info-card__header text-center">
+                                <svg width="75" height="51" viewBox="0 0 75 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.29592 0H72.7041C73.9721 0 75 0.982086 75 2.19355V10.9677C75 12.1792 73.9721 13.1613 72.7041 13.1613H2.29592C1.02792 13.1613 0 12.1792 0 10.9677V2.19355C0 0.982083 1.02792 0 2.29592 0Z" fill="url(#paint2_linear)"/>
+                                    <path d="M2.29592 37.8387H72.7041C73.9721 37.8387 75 38.8208 75 40.0323V48.8064C75 50.0179 73.9721 51 72.7041 51H2.29592C1.02792 51 0 50.0179 0 48.8064V40.0323C0 38.8208 1.02792 37.8387 2.29592 37.8387Z" fill="url(#paint3_linear)"/>
+                                </svg>
+                                <h5>How to make the trade</h5>
+                            </div>
+                            <div class="info-card__body">
+                                <p class="text-lightgrey">Using your broker, request access to carry out option trading. Once you can trade options, you can get started by using the VIX Calculator.</p>
+                                <p class="text-lightgrey">Check on VIX once in a while, for example, if you see that VIX is up. When this happens, come visit us, and we can tell you if there is ...</p>
+                                <div><a href="#" onclick="event.preventDefault();">See more</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Scripts -->
+    <script src="static/home/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/home/assets/apexcharts-bundle/apexcharts.min.js"></script>
+    <script>
+      // Placeholder data for the line chart
+      const vixData = {
+        '1d': [10, 12, 14, 16, 13, 15, 12, 14, 11, 13, 12, 14],
+        '7d': [15, 16, 14, 13, 12, 11, 10, 9, 8, 10, 12, 11],
+        '20d': [20, 18, 17, 19, 16, 15, 17, 16, 14, 13, 12, 11]
+      };
+      let currentRange = '1d';
+      const chart = new ApexCharts(document.querySelector("#vix-price-chart"), {
+        series: [{ name: 'VIX', data: vixData[currentRange] }],
+        chart: { height: 350, type: 'line', toolbar: { show: false } },
+        stroke: { curve: 'smooth' },
+        colors: ['#e74c3c'],
+        xaxis: { categories: vixData[currentRange].map((_, i) => i + 1), labels: { show: false } },
+        yaxis: { labels: { style: { colors: ['#999'] } } },
+        tooltip: { theme: 'dark' },
+      });
+      chart.render();
+      function updateChart(range) {
+        currentRange = range;
+        chart.updateSeries([{ name: 'VIX', data: vixData[range] }]);
+      }
+    </script>
+</body>
+</html>
