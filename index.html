@@ -39,7 +39,7 @@
             <!-- Chart card -->
             <div class="col-12 col-xxl-11">
                 <div class="box">
-                    <div class="box-body">
+        <div class="box-body position-relative>
                         <!-- Placeholder for the stock chart -->
                         <        <div class="vix-chart-container" style="margin-top: 20px;">
             <div id="chart-buttons" class="mb-2">
@@ -47,36 +47,23 @@
                 <button onclick="updateChart('7d')" class="btn btn-sm button-dark m-1">7 Days</button>
                 <button onclick="updateChart('20d')" class="btn btn-sm button-dark m-1">20 Days</button>
             </div>
-            <div id="vix-price-chart" style="height:350px;"></div>
+            <div id="vix-price-chart" style="height:400px;;/div>
         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Summary container -->
-            <div class="row summary-container justify-content-center position-relative m-0">
-                <div class="col-12 col-md-6 mt-4 mb-3 d-flex justify-content-between align-items-end summary-div">
-                    <div>
-                        <!-- Placeholders for hike/drop indication -->
-                        <h3 class="text-green result-text" id="vix-hike-text">Hike</h3>
-                        <h3 class="text-red result-text d-none" id="vix-drop-text">Drop</h3>
-                        <h3 class="mt-2">last two days</h3>
-                        <a href="#read-more" class="btn button-green mt-2">READ MORE <i class="fa fa-caret-right"></i></a>
-                    </div>
-                    <div class="text-end">
-                        <!-- Placeholder for the two‑day percent change -->
-                        <div class="text-green large-percent-text mb-2">
-                            <h2 id="vix_price_placeholder">+X.XX%</h2>
-                        </div>
-                    </div>
+              <!-- Summary overlay -->
+            <div class="summary-overlay d-flex justify-content-between align-items-end px-3" style="position:absolute; bottom:20px; left:0; right:0;">
+                <div>
+                    <h3 class="result-text text-green mb-0" id="vix-hike-text" style="display:none;">Hike</h3>
+                    <h3 class="result-text text-red mb-0" id="vix-drop-text">Drop</h3>
+                    <p class="text-lightgrey mb-1">last two days</p>
+                    <a href="#bottom-main" id="read-more-btn" class="btn btn-sm button-red">READ MORE</a>
                 </div>
-                <div class="col-6 d-flex justify-content-center">
-                    <!-- Bull/Bear images (display based on VIX movement) -->
-                    <img src="static/home/images/bull.png" alt="Bull" class="bull-image" id="bullImg" />
-                    <img src="static/home/images/bear.png" alt="Bear" class="bull-image d-none" id="bearImg" />
-                </div>
+                <h2 class="result-percent mb-0 text-red" id="vix-change-percentage">-4.71%</h2>
             </div>
-        </div>
-
+            <img src="static/home/images/bear.png" id="bearImg" style="position:absolute; bottom:0; right:0; width:30%; opacity:0.7;" alt="bear image">
+            <img src="static/home/images/bull.png" id="bullImg" style="position:absolute; bottom:0; right:0; width:30%; opacity:0.7; display:none;" alt="bull image">          </div>
+400
         <!-- Information cards (strategy, warning, how to trade) -->
         <div class="container mt-5" id="read-more">
             <div class="row justify-content-center g-3">
